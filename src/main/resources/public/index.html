@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Reserve.</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <main class="app">
+
+    <!-- Screen 1: landing -->
+    <section class="screen" id="landing">
+      <h1 class="wordmark wordmark--big">Reserve<b>.</b></h1>
+      <div class="glass dock">
+        <span class="grabber"></span>
+        <button class="pill" id="start">Start Reservation →</button>
+        <button class="text-link" id="open-manage">Have a booking? Cancel it</button>
+      </div>
+    </section>
+
+    <!-- Screen 2: booking sheet -->
+    <section class="screen" id="booking" hidden>
+      <h1 class="wordmark wordmark--small">Reserve<b>.</b></h1>
+      <div class="glass sheet">
+        <span class="grabber"></span>
+
+        <div class="search-row">
+          <label class="search">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input id="location" placeholder="Location" autocomplete="off" aria-label="Filter by table or area">
+          </label>
+          <button class="round" id="close" aria-label="Close">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+
+        <div class="segmented" role="tablist">
+          <button role="tab" class="segment is-on" data-seg="from">From <span id="from-label"></span></button>
+          <button role="tab" class="segment" data-seg="to">To <span id="to-label"></span></button>
+        </div>
+        <input class="picker" type="datetime-local" id="from" step="1800" aria-label="Start time">
+        <input class="picker" type="datetime-local" id="to" step="1800" aria-label="End time" hidden>
+
+        <div class="map-card">
+          <span class="grabber"></span>
+          <div class="map-head">
+            <button class="round round--small" id="clear" aria-label="Clear selection">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </button>
+            <h2>FLOOR MAP</h2>
+          </div>
+          <div class="floor" id="floor" aria-label="Floor map"></div>
+        </div>
+
+        <div class="seats-row">
+          <span>Seats</span>
+          <div class="stepper">
+            <button id="minus" aria-label="Fewer guests">−</button>
+            <output id="party">2</output>
+            <button id="plus" aria-label="More guests">+</button>
+          </div>
+        </div>
+
+        <hr>
+        <p class="note" id="selection">Pick a table on the map</p>
+        <button class="pill" id="reserve" disabled>Reserve</button>
+      </div>
+    </section>
+
+    <!-- Screen 3: guest details -->
+    <section class="screen" id="details" hidden>
+      <h1 class="wordmark wordmark--small">Reserve<b>.</b></h1>
+      <form class="glass sheet" id="details-form">
+        <span class="grabber"></span>
+        <p class="eyebrow" id="details-meta"></p>
+        <h2 class="sheet-title">Your details</h2>
+        <input class="field" name="name" placeholder="Name" required>
+        <input class="field" name="phone" placeholder="Phone" required>
+        <input class="field" name="email" type="email" placeholder="Email" required>
+        <p class="error" id="details-error"></p>
+        <button class="pill" type="submit">Confirm</button>
+        <button class="text-link" type="button" id="details-back">Back</button>
+      </form>
+    </section>
+
+    <!-- Screen 4: done -->
+    <section class="screen" id="done" hidden>
+      <h1 class="wordmark wordmark--big">Booked<b>.</b></h1>
+      <div class="glass dock">
+        <span class="grabber"></span>
+        <p class="note">Your booking id</p>
+        <p class="booking-id" id="booking-id"></p>
+        <button class="pill" id="done-button">Done</button>
+      </div>
+    </section>
+
+    <!-- Screen 5: cancel a booking -->
+    <section class="screen" id="manage" hidden>
+      <h1 class="wordmark wordmark--small">Reserve<b>.</b></h1>
+      <form class="glass sheet" id="manage-form">
+        <span class="grabber"></span>
+        <h2 class="sheet-title">Cancel a booking</h2>
+        <input class="field" id="cancel-id" placeholder="Booking id, e.g. R-1" autocomplete="off" required>
+        <p class="error" id="manage-error"></p>
+        <button class="pill" type="submit">Cancel booking</button>
+        <button class="text-link" type="button" id="manage-back">Back</button>
+      </form>
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
