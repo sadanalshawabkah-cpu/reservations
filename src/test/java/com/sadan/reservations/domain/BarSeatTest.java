@@ -11,8 +11,10 @@ class BarSeatTest {
 
     }
     @Test
-    void threeSeatsIsRejected() {
+    void threeSeatsThrowsException() {
         assertThrows(IllegalArgumentException.class,
-                () -> new BarSeat("S2", 3, Zone.INDOOR, new Position(0, 1)));
+                () -> new BarSeat("S2", 3, Zone.INDOOR, new Position(0, 1))
+        );
+
     }
 }

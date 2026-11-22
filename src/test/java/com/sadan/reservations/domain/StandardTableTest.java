@@ -17,7 +17,7 @@ class StandardTableTest {
         assertFalse(t.canSeat(5));
     }
     @Test
-    void rejectsPartyofzero(){
+    void rejectsPartyOf0(){
         StandardTable t = new StandardTable("T1", 4, Zone.INDOOR, new Position(1, 1));
         assertFalse(t.canSeat(0));
     }
