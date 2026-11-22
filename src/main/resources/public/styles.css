@@ -289,3 +289,7 @@ hr { width: 100%; border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); margin: 4
   z-index: 10;
 }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
+.zone { border-radius: 14px; padding: 6px 8px; text-align: right; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(0,0,0,0.4); pointer-events: none; }
+.zone--window  { background: rgba(80, 190, 150, 0.18); }
+.zone--terrace { background: rgba(245, 165, 80, 0.20); }
+.zone--indoor  { background: rgba(80, 160, 220, 0.16); }

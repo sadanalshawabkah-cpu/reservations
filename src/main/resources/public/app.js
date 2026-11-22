@@ -1,12 +1,6 @@
-// =====================================================================
-//  Reserve. — talks to the Java API:
-//    GET  /api/availability?from=...&to=...&party=...
-//    POST /api/reservations            (table, from, to, party, name, phone, email)
-//    POST /api/reservations/{id}/cancel
-//  Times are sent as "2026-11-22T19:00" (LocalDateTime format).
-// =====================================================================
 
-// ---------- 1. Screens: only one is visible at a time ----------
+
+
 const screens = ["landing", "booking", "details", "done", "manage"];
 
 function show(name) {
@@ -16,12 +10,19 @@ function show(name) {
   window.scrollTo(0, 0);
 }
 
-// ---------- 2. State: everything the user has chosen so far ----------
+
 const state = {
   party: 2,
   tables: [],
   selected: null,   // the table object the user tapped
 };
+const ZONES = [
+  { name: "Window",  x1: 0, x2: 3, y1: 0, y2: 4, label: true  },
+  { name: "Terrace", x1: 4, x2: 9, y1: 0, y2: 1, label: true  },
+  { name: "Terrace", x1: 7, x2: 9, y1: 2, y2: 7, label: false },
+  { name: "Indoor",  x1: 4, x2: 6, y1: 2, y2: 4, label: false },
+  { name: "Indoor",  x1: 0, x2: 6, y1: 5, y2: 7, label: true  },
+];
 
 const $ = (id) => document.getElementById(id);
 const fromInput = $("from");
@@ -105,6 +106,14 @@ function drawFloor() {
   const floor = $("floor");
   const filter = $("location").value.trim().toLowerCase();
   floor.innerHTML = "";
+    for (const z of ZONES) {
+    const area = document.createElement("div");
+    area.className = `zone zone--${z.name.toLowerCase()}`;
+    area.style.gridColumn = `${z.x1 + 1}/${z.x2 + 2}`;
+    area.style.gridRow = `${z.y1 + 1}/${z.y2 + 2}`;
+    if (z.label) area.textContent = z.name;
+    floor.appendChild(area);
+  }
 
   for (const t of state.tables) {
     const button = document.createElement("button");
