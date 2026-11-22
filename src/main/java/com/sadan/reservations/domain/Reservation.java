@@ -55,6 +55,7 @@ package com.sadan.reservations.domain;
     public TimeSlot getSlot() {return slot;}
     public int getPartySize() {return partySize;}
     public ReservationStatus getStatus() {return status;}
+
 }    
 
 

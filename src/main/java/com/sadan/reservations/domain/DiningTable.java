@@ -8,7 +8,7 @@ public abstract class DiningTable {
     // protected so only subclasses can call it!
     protected DiningTable(String label, int seats, Zone zone, Position position) {
 
-        if (seats<1 ) {throw new IllegalArgumentException("seats must be a valid value between 1 and 6");}
+        if (seats<1 ) {throw new IllegalArgumentException("seats must be a valid value over 1. ");}
         if (label==null || label.isBlank()){throw new IllegalArgumentException("label must be entered.");}
 
         this.label = label;
